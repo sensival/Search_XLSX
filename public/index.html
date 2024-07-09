@@ -40,26 +40,45 @@
                 </div>
             </div>
         </nav>
-        <!-- Page content-->
+        <!-- 대문글-->
         <div class="container">
-            <div class="text-center mt-5">
+            <div class="text-center mt-3">
                 <h1 class="display-6 ko_font">Integrate your XLSX</h1>
-                <p class="lead"></p>
                 <p class="ko_font">당신이 SQL를 배우는게 빠를까 내가 이걸 만드는게 빠를까</p>
             </div>
         </div>
 
-        <div class="container mt-5 align-content-center">
+        <!--파일 선택 하기-->
+        <div class="container align-content-center">
                 <input class="form_size form-control " type="file" id="fileInput" />
         </div>
-        
-        <ul id="tabsContainer" class="nav nav-tabs ko_font form_size "></ul>
-        
 
+        <!--프리뷰-->
+        <p class="ko_font text-center colored-text">P R E V I E W</p>
+        
+        <ul id="tabsContainer" class="nav nav-tabs ko_font form_size ">
+        </ul>
         <div class="container form_size table_size">
             <div class="container mt-4 text-center">
                 
                 <div id="tabsContent" class="tab-content mt-3"></div>
+            </div>
+        </div>
+
+        <!--채팅-->
+        <div class="chat-container chat_size">
+            <!-- 헤더 -->
+            <div class="chat-header ko_font">
+                Chat interface
+            </div>
+            <!--채팅 로그 -->
+            <div class="chat-body" id="chat-body">
+                
+            </div>
+            <!-- 입력창 -->
+            <div class="chat-footer">
+                <input type="text" id="chat-input" class="chat-input" placeholder="Type a message...">
+                <button id="chat-button" class="chat-button ko_font">Send</button>
             </div>
         </div>
 
