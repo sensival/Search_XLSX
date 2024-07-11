@@ -125,22 +125,20 @@ document.getElementById('chat-input').addEventListener('keypress', function(even
     });
 
 
-
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('/search')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(files => {
-            const fileListElement = document.getElementById('file-list');
-            files.forEach(file => {
-                const li = document.createElement('li');
-                li.textContent = file;
-                fileListElement.appendChild(li);
-            });
+    console.log("클라이언트 파일명1");
+    fetch('/filelist')
+        .then(response => response.json())
+        .then(fileList => {
+        console.log("클라이언트 파일명2");
+        const ul = document.getElementById('file-list');
+        console.log(ul.getAttributeNames)
+        fileList.forEach(file => {
+            console.log(file)
+            const li = document.createElement('li');
+            li.textContent = file;
+            ul.appendChild(li);
+        });
         })
         .catch(error => console.error('Error fetching file list:', error));
-});
+    });

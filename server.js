@@ -60,14 +60,20 @@ function checkLogin(req, res, next) {
 var directoryPath ='./sample_db';
 
 app.get('/search', checkLogin, (req, res) => {
-    fs.readdir(directoryPath, (err, fileList) =>{
-        fileList.forEach(file => {
-            console.log(file);
-        });
-    }) 
     res.sendFile(path.join(__dirname, 'public', 'search.html'));
 
 });
+
+// 파일 리스트 제공
+app.get('/filelist', (req, res) => {
+    fs.readdir(directoryPath, (err, fileList) =>{
+        console.log("서버파일명");
+        console.log(fileList);
+        res.json(fileList);
+    });
+  });
+
+
 
 
 
