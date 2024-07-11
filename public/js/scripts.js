@@ -5,59 +5,12 @@
 */
 // This file is intentionally blank
 // Use this file to add JavaScript to your project
-/*
-document.getElementById('fileInput').addEventListener('change', handleFile, false);
 
-function handleFile(e) {
-    const file = e.target.files[0];
-    const reader = new FileReader();
-    
-    reader.onload = function(event) {
-        const data = new Uint8Array(event.target.result);
-        const workbook = XLSX.read(data, { type: 'array' });
-        
-        // 첫 번째 시트의 데이터를 읽어옵니다.
-        const firstSheetName = workbook.SheetNames[0];
-        const worksheet = workbook.Sheets[firstSheetName];
-        const json = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
 
-        // 표로 데이터를 출력합니다.
-        displayTable(json);
-    };
-    
-    reader.readAsArrayBuffer(file);
-}
-
-function displayTable(data) {
-    const table = document.getElementById('outputTable');
-    table.innerHTML = '';
-
-    // 테이블 헤더 생성
-    const thead = document.createElement('thead');
-    thead.classList.add('ko_font'); 
-    const headerRow = document.createElement('tr');
-    data[0].forEach(header => {
-        const th = document.createElement('th');
-        th.textContent = header;
-        headerRow.appendChild(th);
-    });
-    thead.appendChild(headerRow);
-    table.appendChild(thead);
-
-    // 테이블 본문 생성
-    const tbody = document.createElement('tbody');
-    tbody.classList.add('table_font'); 
-    for (let i = 1; i < data.length; i++) {
-        const row = document.createElement('tr');
-        data[i].forEach(cell => {
-            const td = document.createElement('td');
-            td.textContent = cell;
-            row.appendChild(td);
-        });
-        tbody.appendChild(row);
-    }
-    table.appendChild(tbody);
-}*/
+// ********** 사이드 바 *************
+document.addEventListener("DOMContentLoaded", function() {
+    // 여기에 JavaScript 코드를 추가할 수 있습니다.
+});
 
 //************ 엑셀 불러오면 보여주기
 document.getElementById('fileInput').addEventListener('change', handleFile, false);
@@ -170,3 +123,6 @@ document.getElementById('chat-input').addEventListener('keypress', function(even
         document.getElementById('chat-button').click();
         }
     });
+
+
+
