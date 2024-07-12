@@ -4,16 +4,17 @@ const path = require('path');
 const session = require('express-session');
 const app = express();
 const port = 3000;
+const fs = require('fs');
 
 // Body-parser middleware 설정
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // 세션 설정
 app.use(session({
-    secret: 'your_secret_key', // 비밀 키 설정
+    secret: '1234', // 비밀 키 설정
     resave: false,
     saveUninitialized: true,
-    cookie: { maxAge: 60000 * 30 } // 세션 만료 시간 설정 (예: 30분)
+    cookie: { maxAge: 60000 * 60 * 24} // 세션 만료 시간 설정 (예: 30분)
 }));
 
 // 정적 파일 제공
@@ -53,10 +54,22 @@ function checkLogin(req, res, next) {
     }
 }
 
-// /search 경로에서 index.html 제공 (로그인 확인 미들웨어 사용)
+
+// /search 경로에서 search.html 제공 (로그인 확인 미들웨어 사용)
+
+var directoryPath ='./sample_db';
+
 app.get('/search', checkLogin, (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    fs.readdir(directoryPath, (err, fileList) =>{
+        fileList.forEach(file => {
+            console.log(file);
+        });
+    }) 
+    res.sendFile(path.join(__dirname, 'public', 'search.html'));
+
 });
+
+
 
 // 기본 경로 리디렉션 (로그인 페이지로)
 app.get('/', (req, res) => {
@@ -70,9 +83,10 @@ app.listen(port, () => {
 
 
 
+// 
+
+
 /*
-const fs = require('fs');
-const directoryPath = 'C:\\Users\\wogns\\OneDrive\\바탕 화면\\excel_to_db\\sample_db';
 
 // HTML 파일을 제공하는 라우트
 // app.get('/main', (req, res) => {
@@ -80,15 +94,15 @@ const directoryPath = 'C:\\Users\\wogns\\OneDrive\\바탕 화면\\excel_to_db\\s
 // });
 
 // 파일 목록을 제공하는 API
-app.get('/files', (req, res) => {
-    fs.readdir(directoryPath, (err, files) => {
-        if (err) {
-            return res.status(500).send('Unable to scan directory: ' + err);
-        }
-        res.json(files);
-    });
-});
+// 파일 목록을 제공하는 API
 
-
+// app.get('/search', (req, res) => {
+//     fs.readdir(directoryPath, (err, files) => {
+//         if (err) {
+//             return res.status(500).send('Unable to scan directory: ' + err);
+//         }
+//         console.log('Files in directory:', files); // 파일 목록을 콘솔에 출력
+//         res.json(files);
+//     });
+// });
 */
-

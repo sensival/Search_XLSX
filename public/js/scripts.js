@@ -126,22 +126,21 @@ document.getElementById('chat-input').addEventListener('keypress', function(even
 
 
 
- // 서버에서 파일 목록을 가져오는 함수
- async function fetchFileList() {
-    try {
-        const response = await fetch('/files');
-        const files = await response.json();
-        const fileListElement = document.getElementById('file-list');
-        
-        files.forEach(file => {
-            const listItem = document.createElement('li');
-            listItem.textContent = file;
-            fileListElement.appendChild(listItem);
-        });
-    } catch (error) {
-        console.error('Error fetching file list:', error);
-    }
-}
-
-// 페이지 로드 시 파일 목록을 가져옴
-window.onload = fetchFileList;
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('/search')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(files => {
+            const fileListElement = document.getElementById('file-list');
+            files.forEach(file => {
+                const li = document.createElement('li');
+                li.textContent = file;
+                fileListElement.appendChild(li);
+            });
+        })
+        .catch(error => console.error('Error fetching file list:', error));
+});
