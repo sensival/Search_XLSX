@@ -6,6 +6,12 @@ const app = express();
 const port = 3000;
 const fs = require('fs');
 
+var cors = require('cors');
+
+
+// CORS 설정
+app.use(cors());
+
 // Body-parser middleware 설정
 app.use(bodyParser.urlencoded({ extended: true }));
 

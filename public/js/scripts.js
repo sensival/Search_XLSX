@@ -127,7 +127,7 @@ document.getElementById('chat-input').addEventListener('keypress', function(even
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log("클라이언트 파일명1");
-    fetch('/filelist')
+    fetch('http://127.0.0.1:3000/filelist')
         .then(response => response.json())
         .then(fileList => {
         console.log("클라이언트 파일명2");
